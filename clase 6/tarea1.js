@@ -57,6 +57,7 @@ function borrarAnteriores() {
     for (let i = 0; i < listaInputs.length; i++) {
         const element = document.querySelector(`#j${i}`);
         document.querySelector("form").removeChild(element)
+        
 
     }
     listaInputs=[]
