@@ -29,10 +29,29 @@ $botonEnviar.onclick = function (e) {
     mostrarBotonReset($cantidad)
 
     botonConfirmar($cantidad)
+    
+    validarFormularioCantidadFamiliares()
+
 
     e.preventDefault()
 
 }
+
+
+
+
+function validarFormularioCantidadFamiliares() {
+    const cantidadFamiliares = $form.cantidad.value
+
+
+    const errorCantidad = validarcantidadFamiliares(cantidadFamiliares)
+
+    let errores = {}
+    errores.cantidad = errorCantidad
+
+    manejarErrores(errores)
+}
+
 function crearIntegrantes(cantidad) {
     for (let i = 0; i < cantidad; i++) {
         const div = document.createElement("div")
@@ -181,18 +200,15 @@ function validarcantidadFamiliares(cantidad) {
 }
 
 
-function validarFormulario(event) {
+function validarFormularioEdades(event) {
 
     const integrantes = document.querySelectorAll(".integrante input")
-    const cantidad= $form.cantidad.value
     
-
-    const errorCantidad=validarcantidadFamiliares(cantidad)
     
     let errores = {
 
     }
-    errores.cantidad=errorCantidad
+    
 
     for (let i = 0; i < integrantes.length; i++) {
         const llave = `edad${i}`
@@ -259,4 +275,4 @@ function eliminarMensajesError(event) {
 
 
 const $form = document.querySelector("form")
-$form.onsubmit = validarFormulario
+$form.onsubmit = validarFormularioEdades
