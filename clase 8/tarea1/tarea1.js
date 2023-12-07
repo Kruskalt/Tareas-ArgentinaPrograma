@@ -18,22 +18,23 @@ let contador = 0
 $botonEnviar.onclick = function (e) {
     borrarAnteriores()
 
-    const $cantidad = document.querySelector("#cantFamiliares")
-
+    const $cantidad = document.querySelector("#cantFamiliares").value
+    console.log($cantidad)
 
     crearIntegrantes($cantidad)
     //hasta este punto se agregan los inputs donde el usuario podra ingresar las edades
 
 
-    mostrarBotonCalcular(document.querySelectorAll(".integrante").length)
-    mostrarBotonReset(document.querySelectorAll(".integrante").length)
-    ocultarBotonConfirmar()
+    mostrarBotonCalcular($cantidad)
+    mostrarBotonReset($cantidad)
 
-    return false
+    botonConfirmar($cantidad)
+
+    e.preventDefault()
 
 }
 function crearIntegrantes(cantidad) {
-    for (let i = 0; i < cantidad.value; i++) {
+    for (let i = 0; i < cantidad; i++) {
         const div = document.createElement("div")
         const label = document.createElement("label")
         const input = document.createElement("input")
@@ -75,6 +76,13 @@ function ocultarBotonConfirmar() {
 function mostrarBotonConfirmar() {
     document.querySelector("#enviarCantidad").className=""
 }
+function botonConfirmar(cantidadIntegrantes) {
+    if (cantidadIntegrantes>0) {
+        ocultarBotonConfirmar()
+    }else{
+        mostrarBotonConfirmar()
+    }
+}
 
 
 
@@ -96,13 +104,15 @@ function borrarAnteriores() {
 
 
 document.querySelector("#reset").onclick = function (e) {
-    const $cantidad = document.querySelector("#cantFamiliares")
     borrarAnteriores()
+    const $cantidad = document.querySelectorAll(".integrante").length
+    
 
-    mostrarBotonCalcular(document.querySelectorAll(".integrante").length)
-    mostrarBotonReset(document.querySelectorAll(".integrante").length)
+    mostrarBotonCalcular($cantidad)
+    mostrarBotonReset($cantidad)
     mostrarBotonConfirmar()
-    $cantidad.value=""
+    $form.cantidad.value=""
+
     return false
 }
 
@@ -163,14 +173,26 @@ function validarEdad(edad) {
     return ""
 }
 
+function validarcantidadFamiliares(cantidad) {
+    if (cantidad==="") {
+        return "Te falta ingresar la cantidad de familiares"
+    }
+    return ""
+}
+
 
 function validarFormulario(event) {
 
     const integrantes = document.querySelectorAll(".integrante input")
+    const cantidad= $form.cantidad.value
+    
 
+    const errorCantidad=validarcantidadFamiliares(cantidad)
+    
     let errores = {
 
     }
+    errores.cantidad=errorCantidad
 
     for (let i = 0; i < integrantes.length; i++) {
         const llave = `edad${i}`
