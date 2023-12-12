@@ -137,25 +137,25 @@ document.querySelector("#reset").onclick = function (e) {
 
 
 
-function promedioFamiliar() {
+function calcularPromedioEdadFamiliares(integrantes) {
 
-    const $integrantes = document.querySelectorAll(".integrante input")
-    acumulador = 0
-    for (let i = 0; i < $integrantes.length; i++) {
-        const edadFamiliar = Number($integrantes[i].value)
+    
+    let acumulador = 0
+    for (let i = 0; i < integrantes.length; i++) {
+        const edadFamiliar = Number(integrantes[i].value)
         acumulador += edadFamiliar
 
     }
-    return acumulador / $integrantes.length
+    return acumulador / integrantes.length
 }
 
 
-function familiarMasChico() {
+function buscarFamiliarMasChico(integrantes) {
 
-    const $integrantes = document.querySelectorAll(".integrante input")
-    min = $integrantes[0].value
-    for (let i = 0; i < $integrantes.length; i++) {
-        const edadFamiliar = Number($integrantes[i].value)
+    
+    min = integrantes[0].value
+    for (let i = 0; i < integrantes.length; i++) {
+        const edadFamiliar = Number(integrantes[i].value)
         if (edadFamiliar < min) {
             min = edadFamiliar
         }
@@ -166,12 +166,12 @@ function familiarMasChico() {
 
 
 
-function familiarMasGrande() {
+function buscarFamiliarMasGrande(integrantes) {
 
-    const $integrantes = document.querySelectorAll(".integrante input")
-    max = $integrantes[0].value
-    for (let i = 0; i < $integrantes.length; i++) {
-        const edadFamiliar = Number($integrantes[i].value)
+    
+    max = integrantes[0].value
+    for (let i = 0; i < integrantes.length; i++) {
+        const edadFamiliar = Number(integrantes[i].value)
         if (edadFamiliar > max) {
             max = edadFamiliar
         }
@@ -202,7 +202,7 @@ function validarcantidadFamiliares(cantidad) {
 
 function validarFormularioEdades(event) {
 
-    const integrantes = document.querySelectorAll(".integrante input")
+    const $integrantes = document.querySelectorAll(".integrante input")
     
     
     let errores = {
@@ -210,10 +210,10 @@ function validarFormularioEdades(event) {
     }
     
 
-    for (let i = 0; i < integrantes.length; i++) {
+    for (let i = 0; i < $integrantes.length; i++) {
         const llave = `edad${i}`
-        console.log(integrantes[i].value)
-        errores[`${llave}`] = validarEdad(integrantes[i].value)
+        console.log($integrantes[i].value)
+        errores[`${llave}`] = validarEdad($integrantes[i].value)
 
     }
 
@@ -222,9 +222,9 @@ function validarFormularioEdades(event) {
 
 
     if (esExito) {
-        document.querySelector("#edadPromedio").innerText = "Edad promedio " + promedioFamiliar()
-        document.querySelector("#masChico").innerText = "El mas joven tiene " + familiarMasChico()
-        document.querySelector("#masGrande").innerText = "El mas viejo tiene " + familiarMasGrande()
+        document.querySelector("#edadPromedio").innerText = "Edad promedio " + calcularPromedioEdadFamiliares($integrantes)
+        document.querySelector("#masChico").innerText = "El mas joven tiene " + buscarFamiliarMasChico($integrantes)
+        document.querySelector("#masGrande").innerText = "El mas viejo tiene " + buscarFamiliarMasGrande($integrantes)
 
 
         document.querySelector("#casoExitoso").className = ""
