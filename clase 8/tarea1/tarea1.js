@@ -16,19 +16,19 @@ let contador = 0
 
 //capturar evento de cantidad de familiares ingresados
 $botonEnviar.onclick = function (e) {
-    borrarAnteriores()
+    borrarIntegrantesAnteriores()
 
-    const $cantidad = document.querySelector("#cantFamiliares").value
-    console.log($cantidad)
+    const cantidadDeFamiliares = document.querySelector("#cantFamiliares").value
+    console.log(cantidadDeFamiliares)
 
-    crearIntegrantes($cantidad)
+    crearIntegrantes(cantidadDeFamiliares)
     //hasta este punto se agregan los inputs donde el usuario podra ingresar las edades
 
 
-    mostrarBotonCalcular($cantidad)
-    mostrarBotonReset($cantidad)
+    mostrarBotonCalcular(cantidadDeFamiliares)
+    mostrarBotonReset(cantidadDeFamiliares)
 
-    botonConfirmar($cantidad)
+    botonConfirmar(cantidadDeFamiliares)
     
     validarFormularioCantidadFamiliares()
 
@@ -107,7 +107,7 @@ function botonConfirmar(cantidadIntegrantes) {
 
 
 
-function borrarAnteriores() {
+function borrarIntegrantesAnteriores() {
     const $integrantes = document.querySelectorAll(".integrante")
     for (let i = 0; i < $integrantes.length; i++) {
 
@@ -123,12 +123,12 @@ function borrarAnteriores() {
 
 
 document.querySelector("#reset").onclick = function (e) {
-    borrarAnteriores()
-    const $cantidad = document.querySelectorAll(".integrante").length
+    borrarIntegrantesAnteriores()
+    const cantidadFamiliares = document.querySelectorAll(".integrante").length
     
 
-    mostrarBotonCalcular($cantidad)
-    mostrarBotonReset($cantidad)
+    mostrarBotonCalcular(cantidadFamiliares)
+    mostrarBotonReset(cantidadFamiliares)
     mostrarBotonConfirmar()
     $form.cantidad.value=""
 
