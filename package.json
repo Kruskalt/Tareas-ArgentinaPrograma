@@ -1,0 +1,23 @@
+{
+  "name": "tareas-argentinaprograma",
+  "version": "1.0.0",
+  "description": "tareas de argentina programa",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kruskalt/Tareas-ArgentinaPrograma.git"
+  },
+  "author": "naza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kruskalt/Tareas-ArgentinaPrograma/issues"
+  },
+  "homepage": "https://github.com/Kruskalt/Tareas-ArgentinaPrograma#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1"
+  }
+}
